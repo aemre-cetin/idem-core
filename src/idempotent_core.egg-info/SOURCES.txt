@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+src/idempotent_core/__init__.py
+src/idempotent_core/binding.py
+src/idempotent_core/idempotent.dll
+src/idempotent_core.egg-info/PKG-INFO
+src/idempotent_core.egg-info/SOURCES.txt
+src/idempotent_core.egg-info/dependency_links.txt
+src/idempotent_core.egg-info/requires.txt
+src/idempotent_core.egg-info/top_level.txt
+tests/test_native_binding.py
