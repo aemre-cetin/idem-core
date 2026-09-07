@@ -4,6 +4,8 @@
 [![C++](https://img.shields.io/badge/C%2B%2B-20-blue.svg)]()
 [![CUDA](https://img.shields.io/badge/CUDA-12.4%20sm__120%20Blackwell-green.svg)]()
 [![Patent](https://img.shields.io/badge/Patent-US_64%2F148%2C668-red.svg)]()
+[![Commercialization Strategy](https://img.shields.io/badge/commercialization-strategy-gold.svg)](./commercialization.md)
+[![Research Paper](https://img.shields.io/badge/paper-PDF-red.svg)](../../omnibus-monograph/main.pdf)
 
 **Idempotent-Core** is the unified foundational native runtime engine for the **Idempotent Permutations** ecosystem. It provides direct, zero-dependency C++20 templates, native CUDA kernels, and a pure C ABI (`libidempotent.so` / `idempotent.dll`) for ultra-high-throughput in-place tensor and array compaction across CPU and GPU architectures.
 
@@ -59,3 +61,18 @@ idempotent_core.compact_inplace(data, target_map)
 # Retained active slice
 active_data = data[:256]
 ```
+
+---
+
+## 📄 Scientific Publication
+
+The theoretical foundations, mathematical proofs, and hardware benchmarks on NVIDIA Blackwell (`sm_120`) are published in:
+* **Research Paper:** [`main.pdf`](../../omnibus-monograph/main.pdf)
+* **Patent Application:** Protected under U.S. Patent Application No.: `64/148,668` (*Confirmation No. 5890*).
+* **Inventor:** Dr. A. Emre ÇETİN (`aemre.cetin@gmail.com`).
+
+---
+
+## 💼 Commercialization & Enterprise Licensing
+
+Institutional investor pitch, enterprise ROI analysis, TAM/SAM/SOM market sizing, and multi-year commercialization roadmap are detailed in [commercialization.md](./commercialization.md).
