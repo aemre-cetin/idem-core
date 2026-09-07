@@ -1,17 +1,20 @@
 # Idempotent-Core: Native C++20 and CUDA Zero-Copy In-Place Compaction Engine
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-green.svg)](LICENSE)
+[![PyPI](https://img.shields.io/pypi/v/idempotent-core.svg?color=blue)](https://pypi.org/project/idempotent-core/)
+[![Hugging Face Space](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Space-yellow)](https://huggingface.co/spaces/aecetin/idempotent-ai-showcase)
 [![C++](https://img.shields.io/badge/C%2B%2B-20-blue.svg)]()
 [![CUDA](https://img.shields.io/badge/CUDA-12.4%20sm__120%20Blackwell-green.svg)]()
 [![Patent](https://img.shields.io/badge/Patent-US_64%2F148%2C668-red.svg)]()
 [![Commercialization Strategy](https://img.shields.io/badge/commercialization-strategy-gold.svg)](./commercialization.md)
-[![Research Paper](https://img.shields.io/badge/paper-PDF-red.svg)](../../omnibus-monograph/main.pdf)
 
 **Idempotent-Core** is the unified foundational native runtime engine for the **Idempotent Permutations** ecosystem. It provides direct, zero-dependency C++20 templates, native CUDA kernels, and a pure C ABI (`libidempotent.so` / `idempotent.dll`) for ultra-high-throughput in-place tensor and array compaction across CPU and GPU architectures.
 
-Protected under **U.S. Patent Application No. 64/148,668** (*"Patent Pending"*).  
-**Author:** Dr. A. Emre ÇETİN (`aemre.cetin@gmail.com`)  
-**Affiliation:** Computational Systems and Cognitive Architectures, Izmir, Turkey  
+- 🌟 **Interactive Live Showcase:** [huggingface.co/spaces/aecetin/idempotent-ai-showcase](https://huggingface.co/spaces/aecetin/idempotent-ai-showcase)
+- 📦 **PyPI Package:** `pip install idempotent-core` ([pypi.org/project/idempotent-core](https://pypi.org/project/idempotent-core/))
+- 🛡️ Protected under **U.S. Patent Application No. 64/148,668** (*"Patent Pending"*).  
+- **Author:** Dr. A. Emre ÇETİN (`aemre.cetin@gmail.com`)  
+- **Affiliation:** Computational Systems and Cognitive Architectures, Izmir, Turkey  
 
 ---
 
