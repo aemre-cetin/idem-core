@@ -44,6 +44,22 @@ if os.path.exists(_dll_path):
         ]
         _lib.idempotent_compact_1d_i64.restype = None
 
+        if hasattr(_lib, "idempotent_cuda_compact_f32"):
+            _lib.idempotent_cuda_compact_f32.argtypes = [
+                ctypes.c_void_p, ctypes.c_void_p,
+                ctypes.c_int, ctypes.c_int, ctypes.c_int,
+                ctypes.c_void_p
+            ]
+            _lib.idempotent_cuda_compact_f32.restype = None
+
+        if hasattr(_lib, "idempotent_cuda_compact_f16"):
+            _lib.idempotent_cuda_compact_f16.argtypes = [
+                ctypes.c_void_p, ctypes.c_void_p,
+                ctypes.c_int, ctypes.c_int, ctypes.c_int,
+                ctypes.c_void_p
+            ]
+            _lib.idempotent_cuda_compact_f16.restype = None
+
         _lib.idempotent_generate_map.argtypes = [
             ctypes.c_void_p, ctypes.c_void_p,
             ctypes.c_size_t, ctypes.c_size_t
@@ -100,19 +116,29 @@ def generate_idempotent_map(
 def compact_inplace(tensor: torch.Tensor, target_map: torch.Tensor) -> torch.Tensor:
     """
     In-Place Zero-Copy Compaction.
-    Dispatches to Native C++20 Engine on CPU, or Triton GPU Kernel on CUDA.
+    Dispatches to Native CUDA Engine on GPU (NVIDIA Blackwell sm_120), or Native C++20 Engine on CPU.
     """
     assert tensor.is_contiguous(), "Tensor must be contiguous"
     assert target_map.is_contiguous(), "TargetMap must be contiguous"
 
     if tensor.is_cuda:
-        # GPU Execution via PyTorch / Triton
-        # Transposition swaps in place
         B = tensor.shape[0] if tensor.dim() > 2 else 1
         N = tensor.shape[1] if tensor.dim() > 2 else tensor.shape[0]
-        
-        # We can perform GPU in-situ swaps directly
-        b_map = target_map.view(B, N)
+        D = tensor.shape[-1] if tensor.dim() > 1 else 1
+
+        b_map = target_map.view(B, N).to(device=tensor.device, dtype=torch.int32).contiguous()
+
+        # Direct dispatch to Native CUDA Blackwell sm_120 Kernel
+        if _lib is not None and hasattr(_lib, "idempotent_cuda_compact_f32"):
+            stream = torch.cuda.current_stream().cuda_stream
+            if tensor.dtype == torch.float32:
+                _lib.idempotent_cuda_compact_f32(tensor.data_ptr(), b_map.data_ptr(), B, N, D, stream)
+                return tensor
+            elif tensor.dtype in (torch.float16, torch.bfloat16):
+                _lib.idempotent_cuda_compact_f16(tensor.data_ptr(), b_map.data_ptr(), B, N, D, stream)
+                return tensor
+
+        # Fallback in-situ transposition on GPU
         for b in range(B):
             for i in range(N):
                 dest = b_map[b, i].item()

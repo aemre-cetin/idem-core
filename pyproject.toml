@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "idempotent-core"
-version = "1.0.0"
+version = "1.1.0"
 description = "Native C++20 and CUDA Zero-Copy In-Place Idempotent Permutations Engine"
 readme = "README.md"
 license = { text = "Apache-2.0" }

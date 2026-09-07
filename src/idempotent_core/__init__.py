@@ -11,7 +11,7 @@ from .binding import (
     get_native_version
 )
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 __author__ = "Dr. A. Emre ÇETİN"
 __email__ = "aemre.cetin@gmail.com"
 __license__ = "Apache-2.0 WITH Patent-Evaluation-Grant"
